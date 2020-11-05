@@ -2,6 +2,12 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
+enum INPUT_REQUEST_TYPE{
+    COMMAND,
+    ADDITIONAL,
+    NONE
+}
+
 public class Client {
 
     public static void main(String[] args){
@@ -13,12 +19,68 @@ public class Client {
 
             String input_line = "";
             String reply_line = "";
-            while(!input_line.equals("stop")){
-                input_line = bufferedReader.readLine();
-                outputStream.writeUTF(input_line);
-                outputStream.flush();
+
+            Command[] commands = {
+                    new HelpCommand(),
+                    new InfoCommand(),
+                    new ShowCommand(),
+                    new AddElementCommand(),
+                    new UpdateElementOnIDCommand(),
+                    new RemoveByIdCommand(),
+                    new ClearCollectionCommand(),
+                    new SaveCollectionCommand(),
+//                new ExitCommand(),
+                    new InsertElementAtIndexCommand(),
+                    new AddElementIfMaxCommand(),
+                    new ShuffleCommand(),
+                    new MaxByHeight(),
+                    new PrintFieldAscendingHeightCommand(),
+                    new PrintFieldDescendingHeightCommand()
+            };
+
+            while(!input_line.equals("exit")){
                 reply_line = inputStream.readUTF();
-                System.out.println("Server says: " + reply_line);
+                System.out.print(reply_line);
+
+                INPUT_REQUEST_TYPE input_request_type = INPUT_REQUEST_TYPE.NONE;
+                if(reply_line.charAt(0) == '>')
+                    input_request_type = INPUT_REQUEST_TYPE.COMMAND;
+                for(int i = reply_line.length() - 1; i > 0; i--){
+                    if(reply_line.charAt(i) == ':') {
+                        input_request_type = INPUT_REQUEST_TYPE.ADDITIONAL;
+                        break;
+                    }
+                    else if(reply_line.charAt(i) != ' ') {
+                        break;
+                    }
+                }
+//                switch (input_request_type){
+//                    case COMMAND:
+//
+//                        break;
+//                    case ADDITIONAL:
+//
+//                        break;
+//                    case NONE:
+//
+//                        break;
+//                }
+                if(input_request_type != INPUT_REQUEST_TYPE.NONE) {
+                    input_line = bufferedReader.readLine();
+
+                    boolean command_available = false;
+                    for(Command command : commands)
+                        if(command.inline_name().equals(input_line)){
+                            command_available = true;
+                            break;
+                        }
+                    if(command_available || input_request_type != INPUT_REQUEST_TYPE.COMMAND) {
+                        outputStream.writeUTF(input_line);
+                        outputStream.flush();
+                    }else
+                        System.out.println("invalid command");
+                }else
+                    System.out.print("\n");
             }
 
             outputStream.close();
@@ -28,23 +90,4 @@ public class Client {
             System.out.println("Unable to establish connection");
         }
     }
-
-//    static boolean sendMessage(String message, DataOutputStream outputStream){
-//        try {
-//            outputStream.writeUTF(message);
-//            outputStream.flush();
-//        } catch (IOException e) {
-//            System.out.println("Unable to send message!");
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    static String readMessage(DataInputStream inputStream){
-//        try {
-//            return inputStream.readUTF();
-//        } catch (IOException e) {
-//            return "";
-//        }
-//    }
 }

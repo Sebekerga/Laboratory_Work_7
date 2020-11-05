@@ -1,5 +1,3 @@
-package Server;
-
 public class Person {
     public int id; //must be grater then 0, generated
     public String name; //cannot be 0, string cannot be blank

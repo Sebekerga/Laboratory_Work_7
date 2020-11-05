@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<collection>
+  <person id = "1">
+    <name>Jena</name>
+    <coordinates>
+      <x>2.0</x>
+      <y>3</y>
+    </coordinates>
+    <creationDate>10/01/2020 - 11:28:39 +0300</creationDate>
+    <height>145</height>
+    <passportID>l;fksgl;s</passportID>
+    <eyeColor>YELLOW</eyeColor>
+  </person>
+  <person id = "2">
+    <name>Max</name>
+    <coordinates>
+      <x>3.0</x>
+      <y>4</y>
+    </coordinates>
+    <creationDate>10/01/2020 - 11:28:39 +0300</creationDate>
+    <height>160</height>
+    <eyeColor>BLACK</eyeColor>
+    <nationality>CHINA</nationality>
+  </person>
+  <person id = "3">
+    <name>Kaylee</name>
+    <coordinates>
+      <x>4.0</x>
+      <y>5</y>
+    </coordinates>
+    <creationDate>10/01/2020 - 11:28:39 +0300</creationDate>
+    <height>170</height>
+    <passportID>rhse</passportID>
+    <nationality>RUSSIA</nationality>
+  </person>
+  <person id = "4">
+    <name>Bob</name>
+    <coordinates>
+      <x>5.0</x>
+      <y>6</y>
+    </coordinates>
+    <creationDate>10/01/2020 - 11:28:39 +0300</creationDate>
+    <height>150</height>
+    <passportID>8877mrt7</passportID>
+    <nationality>ITALY</nationality>
+  </person>
+  <person id = "5">
+    <name>Karen</name>
+    <coordinates>
+      <x>6.0</x>
+      <y>7</y>
+    </coordinates>
+    <creationDate>10/01/2020 - 11:28:39 +0300</creationDate>
+    <height>169</height>
+    <passportID>asdbfg</passportID>
+  </person>
+</collection>
